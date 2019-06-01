@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "ArrayList.h"
+#include "LinkedList.h"
 
 /**
  * 测试List
@@ -23,9 +24,21 @@ int testList(){
     list.size = 100;
 }
 
+int testLinkedList(){
+    printf("size of LNode:%d , size of LinkList:%d\n", sizeof(LNode), sizeof(LinkList));
+    ElemType dataForInit = 10;
+    LinkList linkList = initLinkList(dataForInit);
+
+    ElemType dataForInsert = 11;
+    insertLinkList(linkList,dataForInsert);
+    ElemType dataForInsert2 = 12;
+    insertLinkList(linkList,dataForInsert2);
+}
+
 
 int main() {
-   testList();
+//   testList();
+    testLinkedList();
     return 0;
 }
 
