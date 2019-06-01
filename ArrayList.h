@@ -15,19 +15,29 @@
 #define LIST_SIZE 100//列表的初始化长度
 #define LIST_INCREMENT 10
 
+
+
+/**日志级别**/
+enum LOGLEVE{
+    DEBUG=1,INFO
+};
+
+static enum LOGLEVE current_logleve=DEBUG;//0:打印全部日志,1:打印部分日志
+
 typedef int Datatype;
 
+//基于数组实现的列表(顺序存储结构)
 typedef struct {
     Datatype *data;
     int length;
     int size;
-} List;
+} ArrayList;
 
 /**
  * 初始化列表
  * @param L
  */
-int initList(List *L) {
+int initList(ArrayList *L) {
     printf("************************%s==>START**********************************\n", "initList");
     L->data = (Datatype *) malloc(sizeof(Datatype) * LIST_SIZE);
     if (L->data == NULL) {
@@ -35,7 +45,7 @@ int initList(List *L) {
     }
     L->length = 0;
     L->size = LIST_SIZE;
-    printf("initList List succeed .length:%d , size:%d , address:%p \n", L->length, L->size, &L);
+    printf("initList ArrayList succeed .length:%d , size:%d , address:%p \n", L->length, L->size, &L);
     printf("************************%s==>END**********************************\n\n\n\n", "initList");
     return OK;
 }
@@ -45,7 +55,7 @@ int initList(List *L) {
  * @param L
  * @return
  */
-int destroyList(List *L) {
+int destroyList(ArrayList *L) {
     printf("************************%s==>START**********************************\n", "destroyList");
     while (!L->data) {
         free(L->data);
@@ -64,7 +74,7 @@ int destroyList(List *L) {
  * @param data
  * @return
  */
-int listInsert(List *L, int i, Datatype data) {
+int listInsert(ArrayList *L, int i, Datatype data) {
     printf("************************%s==>START**********************************\n", "listInsert");
     if (i < 0 || i > (L->size - 1)) {
         printf("listInsert error i(%d),it must be 0~%d\n", i, L->size);
@@ -92,7 +102,7 @@ int listInsert(List *L, int i, Datatype data) {
  * @param data
  * @return
  */
-int listDelete(List *L,int i,Datatype *data){
+int listDelete(ArrayList *L,int i,Datatype *data){
 
     printf("************************%s==>START**********************************\n", "listDelete");
     if (i < 0 || i > (L->size - 1)) {
@@ -114,6 +124,32 @@ int listDelete(List *L,int i,Datatype *data){
     }
     printf("************************%s==>END**********************************\n\n\n\n", "listDelete");
 return OK;
+}
+
+/**
+ * 获取列表中的元素
+ * @param L
+ * @param i
+ * @param data
+ * @return
+ */
+int getElem(ArrayList *L,int i,Datatype *data){
+    printf("************************%s==>START**********************************\n", "getElem");
+    if (i < 0 || i > (L->size - 1)) {
+        printf("listDelete error i(%d),it must be 0~%d\n", i, L->size);
+        return OVERFLOW;
+    }
+    if(i>=L->length){
+        printf("listDelete error i(%d),length(%d)out of menmery\n", i, L->length);
+        return OVERFLOW;
+    }
+    *data = L->data[i];
+    printf("getElem succeed .length:%d , size:%d , address:%p \n", L->length, L->size, &L);
+    for (int j = 0; j < L->length; ++j) {
+        printf("\tdata[%d]==> value:%d , address:%p\n", j, L->data[j], &L->data[j]);
+    }
+    printf("************************%s==>END**********************************\n\n\n\n", "getElem");
+    return OK;
 }
 
 
