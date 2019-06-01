@@ -33,6 +33,8 @@ int testLinkedList(){
     insertLinkList(linkList,dataForInsert);
     ElemType dataForInsert2 = 12;
     insertLinkList(linkList,dataForInsert2);
+
+    linkList = destroyLinkList(linkList);
 }
 
 
