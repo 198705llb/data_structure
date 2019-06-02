@@ -3,4 +3,4 @@ project(data_structure C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(data_structure main.c ArrayList.h LinkedList.h Stack.h)
+add_executable(data_structure main.c ArrayList.h LinkedList.h Stack.h Queue.h)

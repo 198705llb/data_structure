@@ -2,6 +2,7 @@
 #include "ArrayList.h"
 #include "LinkedList.h"
 #include "Stack.h"
+#include "Queue.h"
 
 /**
  * 测试List
@@ -53,10 +54,22 @@ void testStack() {
     pop(stack);
 }
 
+void testQueue(){
+    Queue *queue=initQueue();
+    int count = 5;
+    for (int i = 0; i <count ; ++i) {
+        add(queue,i);
+    }
+    for (int j = 0; j <count ; ++j) {
+        printf("taked QElem:%d\n",take(queue));
+    }
+}
+
 int main() {
 //   testList();
 //    testLinkedList();
-    testStack();
+//    testStack();
+    testQueue();
     return 0;
 }
 
