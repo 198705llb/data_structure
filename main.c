@@ -26,15 +26,22 @@ int testList(){
 
 int testLinkedList(){
     printf("size of LNode:%d , size of LinkList:%d\n", sizeof(LNode), sizeof(LinkList));
-    ElemType dataForInit = 10;
+    ElemType dataForInit = 1;
     LinkList linkList = initLinkList(dataForInit);
 
-    ElemType dataForInsert = 11;
+    ElemType dataForInsert = 2;
     insertLinkList(linkList,dataForInsert);
-    ElemType dataForInsert2 = 12;
+    ElemType dataForInsert2 = 3;
     insertLinkList(linkList,dataForInsert2);
-
+    ElemType dataForInsertHead = 4;
+    linkList = insertLinkListHead(linkList,dataForInsertHead);
+    printList(linkList);
+    ElemType dataForInsertIndex = 5;
+    linkList = insertLinkListIndex(linkList,1,dataForInsertIndex);
+    printList(linkList);
+    printf("\t===>getElemLinkList:%d\n",getElemLinkList(linkList,0));
     linkList = destroyLinkList(linkList);
+    printList(linkList);
 }
 
 
